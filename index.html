@@ -1,0 +1,369 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class 10 Science Quiz - CBSE</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+      }
+      .quiz-container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .question {
+        margin-bottom: 20px;
+      }
+      .options label {
+        display: block;
+        margin: 5px 0;
+      }
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .result {
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h1>Class 10 Science Quiz (CBSE)</h1>
+      <div id="quiz"></div>
+      <button id="submit">Submit Quiz</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <script>
+      const quizData = [
+        {
+          question: "1. What is the chemical formula of water?",
+          options: ["H2O2", "H2O", "HO", "H2SO4"],
+          answer: "H2O",
+        },
+        {
+          question: "2. Which gas is released during photosynthesis?",
+          options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+          answer: "Oxygen",
+        },
+        {
+          question:
+            "3. The process of converting sugar into alcohol is known as:",
+          options: [
+            "Photosynthesis",
+            "Fermentation",
+            "Respiration",
+            "Transpiration",
+          ],
+          answer: "Fermentation",
+        },
+        {
+          question: "4. What is the unit of electric current?",
+          options: ["Volt", "Ampere", "Ohm", "Watt"],
+          answer: "Ampere",
+        },
+        {
+          question: "5. Which lens is used to correct myopia?",
+          options: [
+            "Convex lens",
+            "Concave lens",
+            "Cylindrical lens",
+            "Bifocal lens",
+          ],
+          answer: "Concave lens",
+        },
+        {
+          question: "6. The pH value of a neutral solution is:",
+          options: ["7", "14", "0", "1"],
+          answer: "7",
+        },
+        {
+          question: "7. Which metal is the best conductor of electricity?",
+          options: ["Iron", "Silver", "Copper", "Aluminum"],
+          answer: "Silver",
+        },
+        {
+          question: "8. What is the main component of biogas?",
+          options: ["Methane", "Ethane", "Propane", "Butane"],
+          answer: "Methane",
+        },
+        {
+          question: "9. Which hormone regulates blood sugar levels?",
+          options: ["Insulin", "Thyroxine", "Adrenaline", "Estrogen"],
+          answer: "Insulin",
+        },
+        {
+          question:
+            "10. The process of conversion of solid directly into gas is called:",
+          options: ["Melting", "Sublimation", "Evaporation", "Condensation"],
+          answer: "Sublimation",
+        },
+        {
+          question: "11. Which element has the atomic number 6?",
+          options: ["Oxygen", "Carbon", "Nitrogen", "Helium"],
+          answer: "Carbon",
+        },
+        {
+          question: "12. What is the SI unit of force?",
+          options: ["Joule", "Newton", "Pascal", "Watt"],
+          answer: "Newton",
+        },
+        {
+          question: "13. Which of the following is a greenhouse gas?",
+          options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+          answer: "Carbon dioxide",
+        },
+        {
+          question:
+            "14. The phenomenon of light bending when entering a different medium is called:",
+          options: ["Reflection", "Refraction", "Diffraction", "Dispersion"],
+          answer: "Refraction",
+        },
+        {
+          question: "15. Which vitamin is also known as ascorbic acid?",
+          options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+          answer: "Vitamin C",
+        },
+        {
+          question: "16. What is the chemical symbol for gold?",
+          options: ["Au", "Ag", "Fe", "Cu"],
+          answer: "Au",
+        },
+        {
+          question:
+            "17. Which part of the plant is responsible for transpiration?",
+          options: ["Root", "Stem", "Leaf", "Flower"],
+          answer: "Leaf",
+        },
+        {
+          question:
+            "18. The device used to measure electric current is called:",
+          options: ["Voltmeter", "Ammeter", "Galvanometer", "Barometer"],
+          answer: "Ammeter",
+        },
+        {
+          question: "19. Which gas is used in fire extinguishers?",
+          options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+          answer: "Carbon dioxide",
+        },
+        {
+          question: "20. What is the full form of DNA?",
+          options: [
+            "Deoxyribonucleic Acid",
+            "Dioxyribonucleic Acid",
+            "Deoxyribose Nucleic Acid",
+            "Dioxyribose Nucleic Acid",
+          ],
+          answer: "Deoxyribonucleic Acid",
+        },
+      ];
+      const biologyQuiz = [
+        {
+          question: "1. What is the functional unit of the kidney?",
+          options: ["Neuron", "Nephron", "Neutron", "Neoplasm"],
+          answer: "Nephron",
+        },
+        {
+          question: "2. Which gas is released during photosynthesis?",
+          options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+          answer: "Oxygen",
+        },
+        {
+          question: "3. What is the powerhouse of the cell?",
+          options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi body"],
+          answer: "Mitochondria",
+        },
+        {
+          question:
+            "4. Which vitamin is produced in the human body with the help of sunlight?",
+          options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+          answer: "Vitamin D",
+        },
+        {
+          question: "5. What is the main function of red blood cells?",
+          options: [
+            "Transport oxygen",
+            "Fight infections",
+            "Clot blood",
+            "Digest food",
+          ],
+          answer: "Transport oxygen",
+        },
+        {
+          question:
+            "6. Which part of the plant is responsible for photosynthesis?",
+          options: ["Root", "Stem", "Leaf", "Flower"],
+          answer: "Leaf",
+        },
+        {
+          question:
+            "7. What is the basic structural and functional unit of life?",
+          options: ["Tissue", "Organ", "Cell", "Organism"],
+          answer: "Cell",
+        },
+        {
+          question:
+            "8. Which part of the human brain controls balance and coordination?",
+          options: ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+          answer: "Cerebellum",
+        },
+        {
+          question: "9. What is the primary excretory product in humans?",
+          options: ["Urea", "Ammonia", "Uric acid", "Carbon dioxide"],
+          answer: "Urea",
+        },
+        {
+          question: "10. Which organ in the human body produces bile?",
+          options: ["Pancreas", "Liver", "Kidney", "Gallbladder"],
+          answer: "Liver",
+        },
+        {
+          question: "11. Which disease is caused by the deficiency of insulin?",
+          options: ["Diabetes", "Rickets", "Scurvy", "Goiter"],
+          answer: "Diabetes",
+        },
+        {
+          question:
+            "12. What is the process by which green plants prepare their food?",
+          options: [
+            "Respiration",
+            "Transpiration",
+            "Photosynthesis",
+            "Fermentation",
+          ],
+          answer: "Photosynthesis",
+        },
+        {
+          question: "13. What is the main function of white blood cells?",
+          options: [
+            "Transport oxygen",
+            "Fight infections",
+            "Store nutrients",
+            "Digest food",
+          ],
+          answer: "Fight infections",
+        },
+        {
+          question:
+            "14. Which organ in the human body is responsible for filtering blood?",
+          options: ["Heart", "Lungs", "Kidney", "Liver"],
+          answer: "Kidney",
+        },
+        {
+          question:
+            "15. What is the pigment responsible for the green color of leaves?",
+          options: ["Carotene", "Chlorophyll", "Xanthophyll", "Anthocyanin"],
+          answer: "Chlorophyll",
+        },
+        {
+          question:
+            "16. What is the normal body temperature of a healthy human being?",
+          options: ["35°C", "36.5°C", "37°C", "38°C"],
+          answer: "37°C",
+        },
+        {
+          question:
+            "17. Which part of the brain controls involuntary actions like breathing and heartbeat?",
+          options: [
+            "Cerebrum",
+            "Cerebellum",
+            "Medulla oblongata",
+            "Hypothalamus",
+          ],
+          answer: "Medulla oblongata",
+        },
+        {
+          question: "18. What is the largest organ in the human body?",
+          options: ["Heart", "Brain", "Liver", "Skin"],
+          answer: "Skin",
+        },
+        {
+          question:
+            "19. Which disease is caused by a deficiency of iron in the human body?",
+          options: ["Diabetes", "Anemia", "Rickets", "Scurvy"],
+          answer: "Anemia",
+        },
+        {
+          question: "20. What is the main function of platelets in blood?",
+          options: [
+            "Fight infections",
+            "Help in clotting",
+            "Transport oxygen",
+            "Digest food",
+          ],
+          answer: "Help in clotting",
+        },
+        // Add 20 more questions as required
+      ];
+      const quizContainer = document.getElementById("quiz");
+      const submitButton = document.getElementById("submit");
+      const resultContainer = document.getElementById("result");
+
+      function buildQuiz() {
+        const output = [];
+        quizData.forEach((currentQuestion, questionNumber) => {
+          const options = [];
+          for (let option of currentQuestion.options) {
+            options.push(
+              `<label>
+                            <input type="radio" name="question${questionNumber}" value="${option}">
+                            ${option}
+                        </label>`
+            );
+          }
+          output.push(
+            `<div class="question">${currentQuestion.question}</div>
+                     <div class="options">${options.join("")}</div>`
+          );
+        });
+        quizContainer.innerHTML = output.join("");
+      }
+
+      function showResults() {
+        const answerContainers = quizContainer.querySelectorAll(".options");
+        let numCorrect = 0;
+
+        quizData.forEach((currentQuestion, questionNumber) => {
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {})
+            .value;
+
+          if (userAnswer === currentQuestion.answer) {
+            numCorrect++;
+          }
+        });
+
+        resultContainer.innerHTML = `You scored ${numCorrect} out of ${quizData.length}!`;
+      }
+
+      buildQuiz();
+      submitButton.addEventListener("click", showResults);
+    </script>
+  </body>
+</html>
